@@ -1,8 +1,8 @@
 var StateInit = {
 
     preload: function () {
-        game.load.image("loadingEmpty", "images/loading/progress_none.png");
-        game.load.image("loadingFull", "images/loading/progress_all.png");
+        game.load.image("loadingEmpty", "assets/images/loading/progress_none.png");
+        game.load.image("loadingFull", "assets/images/loading/progress_all.png");
 
         if (screen.width < 1500) {
             if (useLandscape == true) {
