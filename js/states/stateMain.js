@@ -1,10 +1,13 @@
 var StateMain = {
 
     preload: function () {
+        game.load.spritesheet("melo", "assets/images/melo.png", sprite_width, sprite_height, number_of_cells);
 
     },
 
     create: function () {
+
+
 
         //reset the score
         score = 0;

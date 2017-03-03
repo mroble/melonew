@@ -16,7 +16,7 @@ var StateLoad = {
         game.load.spritesheet("buttons", "assets/images/ui/buttons-red.png", 265, 75);
         game.load.spritesheet("soundButtons", "assets/images/ui/soundButtons-blue.png", 44, 44, 4);
         game.load.audio("backgroundMusic", "assets/audio/bubbling.wav");
-        game.load.audio("coin", "audio/Pickup-Coin.wav");
+        game.load.audio("coin", "assets/audio/Pickup-Coin.wav");
     },
 
     create: function () {
