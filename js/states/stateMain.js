@@ -1,20 +1,29 @@
 var StateMain = {
 
     preload: function () {
-        game.load.spritesheet("melo", "assets/images/melo.png", sprite_width, sprite_height, number_of_cells);
+        game.load.spritesheet("melo", "assets/images/main/melospritesheet.png", 100, 100, 6);
 
     },
 
     create: function () {
 
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.melo=game.add.sprite(150, 150, "melo");
+        this.melo.animations.add("idle", [0,1,2], 12, true);
+        this.melo.animations.add("walk", [3,4], 12, true);
+        this.melo.animations.add("jump", [5], 12, false);
+
+        this.melo.animations.play("idle");
+        this.melo.anchor.set(0.5, 0.5);
+        game.physics.arcade.enable(this.melo);
+        this.melo.body.gravity.y=100;
+        this.melo.body.bounce.set(0.25);
+        this.melo.body.collideWorldBound=true;
+
 
 
         //reset the score
         score = 0;
-
-        //add some buttons
-        this.btnYes = gameButtons.addButton("yes", -1, -1, this.sayYes, this);
-        this.btnNo = gameButtons.addButton("no", -1, this.btnYes.y - this.btnYes.height, this.sayNo, this);
 
         //add sound buttons
         this.btnMusic = gameButtons.addAudioButton("music", 20, 20, gameButtons.toggleMusic, this);
@@ -25,7 +34,7 @@ var StateMain = {
         //this.audioGroup.fixedToCamera=true;
 
         //define sounds here
-        this.elephant = game.add.audio("elephant");
+        //this.elephant = game.add.audio("elephant");
 
         //define background music
         this.backgroundMusic = game.add.audio("backgroundMusic");
@@ -40,14 +49,7 @@ var StateMain = {
 
     update: function () {
 
-    }
-    , sayYes: function () {
-        //play sound by passing it to game media
-        gameMedia.playSound(this.elephant);
-    }
-    , sayNo: function () {
-        this.backgroundMusic.stop();
-        game.state.start("StateOver");
+   
     }
 
 
