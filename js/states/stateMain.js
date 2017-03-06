@@ -2,12 +2,23 @@ var StateMain = {
 
     preload: function () {
         game.load.spritesheet("melo", "assets/images/main/melospritesheet.png", 100, 100, 6);
+        game.load.image("tiles", "assets/images/main/spritesheet_melo.png");
+        game.load.tilemap("map","maps/map1.json", null, Phaser.Tilemap.TILED_JSON);
 
     },
 
     create: function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
+
+        //load map
+        this.map=game.add.tilemap("map");
+        this.map.addTilesetImage("tiles");
+
+        this.layer=this.map.createLayer("Tile Layer 1");
+        this.layer.resizeWorld();
+        this.map.setCollisionBetween(0,18);
+
         this.melo=game.add.sprite(150, 150, "melo");
         this.melo.animations.add("idle", [0,1,2], 12, true);
         this.melo.animations.add("walk", [3,4], 12, true);
@@ -20,7 +31,7 @@ var StateMain = {
         this.melo.body.bounce.set(0.25);
         this.melo.body.collideWorldBound=true;
 
-
+        game.camera.follow(this.melo);
 
         //reset the score
         score = 0;
@@ -48,6 +59,7 @@ var StateMain = {
     },
 
     update: function () {
+        game.physics.arcade.collide(this.melo, this.layer);
 
    
     }
