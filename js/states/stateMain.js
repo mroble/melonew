@@ -15,9 +15,12 @@ var StateMain = {
         this.map=game.add.tilemap("map");
         this.map.addTilesetImage("tiles");
 
-        this.layer=this.map.createLayer("Tile Layer 1");
+        this.layer=this.map.createLayer("Background");
+
+        this.layer=this.map.createLayer("Foreground");
         this.layer.resizeWorld();
-        this.map.setCollisionBetween(0,18);
+        this.map.setCollisionBetween(0,17, true, 'Foreground');
+
 
         this.melo=game.add.sprite(150, 150, "melo");
         this.melo.animations.add("idle", [0,1,2], 12, true);
@@ -61,7 +64,7 @@ var StateMain = {
     update: function () {
         game.physics.arcade.collide(this.melo, this.layer);
 
-   
+
     }
 
 
